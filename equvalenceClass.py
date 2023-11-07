@@ -36,11 +36,18 @@ class Equivalence:
     def append(self, item):
         if isinstance(item, Equivalence):
             item.setParent(self.parent)
-            self.children.append(item)
+            if len(self.children) <= 1:
+                self.children.append(item)
+            else:
+                self.children[0].append(item)
         else:
             equivalence = Equivalence(item)
             equivalence.parent = self.parent
-            self.children.append(equivalence)
+            if len(self.children) <= 1:
+                self.children.append(equivalence)
+            else:
+                self.children[0].append(equivalence)
+                
     
   
     def getAllElem(self, parents = None):

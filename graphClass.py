@@ -45,7 +45,7 @@ class Graph:
                 res.children = [self.children[0].graphToBinaryGraph(parents.copy()), resChildren.graphToBinaryGraph(parents.copy())]#0 children->toBinary, new grap->toBinary
             elif(len(self.children) == 2):#only 2 children
                 res.children = [self.children[0].graphToBinaryGraph(parents.copy()), self.children[1].graphToBinaryGraph(parents.copy())]
-            else:#only one children, shouldnt need check because 31 line
+            else:#only one children, shouldnt need check because hasattr(self, 'children')
                 res.children = [self.children[0].graphToBinaryGraph(parents.copy())]
         return res#return binary graph
         
@@ -61,7 +61,7 @@ class Graph:
                 parents=children.verticles(parents)#overwrite the parent list with children list
         return parents
 
-
+'''
 #ossze gyujti listaba a csucs gyerekeit(ez a graf signature-ja?)
 def getSignature(graph):
     signatureTable = [graph,[]]
@@ -105,8 +105,7 @@ def getSignature(graph):
                 if grandson not in signatureTable:
                     signatureTable.append(grandson)
     return signatureTable
-    """
-    
+    """'''
 #graf gyerekeinek szama
 def d(graph):
     if hasattr(graph,"children"):
@@ -121,7 +120,7 @@ def getVerticlesWithChildren(graph):
         if d(verticle) >= 1:
             res.append(verticle)
     return res
-
+'''
 #signature table[[egy,[ketto,harom],[ketto,[harom]]]]
 def list(verticle, signatureTable):
     count = 0
@@ -155,7 +154,7 @@ def fccaDowneyTarjan(graph):
                     for u in list(combine_verticles[0],signatureTable):
                         signatureTable.remove(u)
                         pending.append(u)
-                    #union()
+                    #union()'''
                     
 
 def main():

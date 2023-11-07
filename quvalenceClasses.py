@@ -15,7 +15,7 @@ class EquivalenceClasses:
                 return equivalence.parent.verticle
             if any(verticle.name == currentVerticle.verticle for currentVerticle in equivalence.getAllElem()):
                 return equivalence.parent.verticle
-        return
+        return None
     
     def list(self, equvalence):
         return equvalence.getAllElem()
