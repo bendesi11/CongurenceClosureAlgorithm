@@ -2,6 +2,7 @@ from graphClass import Graph
 from equvalenceClass import Equivalence
 from quvalenceClasses import EquivalenceClasses
 from signatureClass import Signature
+from downewTarjan_fcca import fccaDowneyTarjan_init
 def main():
     #graph test
     elsograf = Graph("elso","1")
@@ -42,6 +43,9 @@ def main():
     print(classes.list(maincongurence))
     print(classes.list(secoundEquivalence))
 
+    alma = classes.find(het)
+    print(type(alma))
+
     signatureTable = Signature()
     signatureTable.enterVerticle(maincongurence)
     signatureTable.enterVerticle(secoundEquivalence)
@@ -54,9 +58,34 @@ def main():
 
     signatureTable.deleteVerticle(maincongurence)
 
+    chatGPT = Graph("A","1",[Graph("B","1",[Graph("D","1",[Graph("C","1")])])])
+    chatGPT.children.append(chatGPT.children[0].children[0].children[0])
+    chatGPT.children[0].children.append(chatGPT)
+    chatGPT.children[0].children[0].children.append(chatGPT.children[0])
+    chatGPT.children[0].children[0].children[0].children = [chatGPT]
+    chatGPT.children[0].children[0].children[0].children.append(chatGPT.children[0].children[0])
 
     
+    chatGPT.printGraph()
+    ceg1Congurence = Equivalence(chatGPT,[chatGPT.children[0]])
+    ceg2Congurence = Equivalence(chatGPT.children[0].children[0],[chatGPT.children[0].children[0].children[0]])
+    cegek = EquivalenceClasses([ceg1Congurence,ceg2Congurence])
 
+    cegek=[[chatGPT,chatGPT.children[0]],[chatGPT.children[0].children[0],chatGPT.children[0].children[0].children[0]]]
+
+    chatGPTD = Graph("D","1")
+    chatGPTA = Graph("A","1")
+    chatGPTB = Graph("B","1")
+    chatGPTC = Graph("C","1")
+    chatGPTE = Graph("E","1")
+    chatGPTD.children = [chatGPTA]
+    chatGPTA.children = [chatGPTD,chatGPTB]
+    chatGPTB.children = [chatGPTA,chatGPTC]
+    chatGPTC.children = [chatGPTB,chatGPTE]
+    chatGPTE.children = [chatGPTC]
+    cegek=[[chatGPTA,chatGPTB],[chatGPTC,chatGPTE]]
+
+    fccaDowneyTarjan_init(chatGPT,cegek)
 
     input("Press Enter to continue...")
 

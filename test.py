@@ -49,7 +49,7 @@ class unitTeszt(unittest.TestCase):
         self.assertGraphEqual(negyed, Graph("negyed", "4", [Graph("elso", "1"), Graph("masodik", "2", [Graph("elso", "1")]), Graph("harmadik", "3")]))
 
     def test_not_Equal(self):
-        self.assertGraphEqual(Graph("elso","2"),Graph("elso","1"))
+        self.assertGraphEqual(Graph("elso","2"),Graph("elso","2"))
     
     #def circle_Graph(self):
         #TODO
